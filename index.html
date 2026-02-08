@@ -1,240 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditi x Ayush: Our Lifetime</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
-    <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #fff5f7;
-            overflow-x: hidden;
-        }
-        .font-romantic { font-family: 'Dancing Script', cursive; }
-        
-        .fade-in { animation: fadeIn 0.8s ease-in forwards; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+<meta charset="UTF-8">
+<title>Aditi ❤️ Ayush</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .heart-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
 
-        .benefit-card {
-            transition: all 0.3s ease;
-        }
-        .benefit-card:hover {
-            transform: translateY(-10px);
-        }
+section {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
 
-        #unlock-screen {
-            background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-        }
+section.active {
+    display: block;
+}
 
-        .hidden-section {
-            display: none;
-        }
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+}
 
-        .img-container {
-            height: 16rem;
-            width: 100%;
-            overflow: hidden;
-            background-color: #ffe4e6;
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-        }
+p {
+    font-size: 1.15rem;
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.6;
+}
 
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+button {
+    background: #fff;
+    color: #ff4d6d;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 15px;
+    transition: 0.3s;
+    position: relative;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+img {
+    max-width: 300px;
+    border-radius: 20px;
+    margin: 25px 0;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.heart {
+    font-size: 3rem;
+    animation: pulse 1.4s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="heart-bg" id="heart-container"></div>
+<audio id="music" src="music/love.mp3"></audio>
 
-    <!-- STAGE 1: THE BIG QUESTION -->
-    <div id="unlock-screen" class="fixed inset-0 z-[100] flex items-center justify-center p-6 text-center">
-        <div class="bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl max-w-2xl fade-in">
-            <h1 class="text-4xl md:text-6xl font-romantic text-rose-600 mb-6">Hey Ayush...</h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                I've been thinking about us, and I have one simple question for you...
-            </p>
-            <div class="bg-rose-50 p-6 rounded-2xl border-2 border-rose-200 mb-10">
-                <h2 class="text-2xl md:text-3xl font-bold text-rose-700">
-                    Are you ready to continue our beautiful journey together, today and every day after?
-                </h2>
-            </div>
-            <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="unlockWebsite()" class="bg-rose-600 hover:bg-rose-700 text-white text-xl font-bold py-4 px-10 rounded-full shadow-lg transform transition hover:scale-110 active:scale-95">
-                    YES, FOREVER! ❤️
-                </button>
-                <button onmouseover="moveNo(this)" id="no-btn" class="bg-gray-200 text-gray-500 text-xl font-bold py-4 px-10 rounded-full transition-all">
-                    No
-                </button>
-            </div>
-        </div>
-    </div>
+<!-- PAGE 1 -->
+<section id="page1" class="active">
+    <h1>Ayush 💌</h1>
+    <div class="heart">❤️</div>
+    <h1>Will you choose to be with Aditi for a lifetime?</h1>
+    <button onclick="yesClicked()">YES 💍</button>
+    <button id="noBtn">NO 🙄</button>
+</section>
 
-    <!-- STAGE 2: THE MAIN WEBSITE -->
-    <main id="main-content" class="hidden-section pb-20">
-        
-        <!-- Celebration Header -->
-        <header class="h-screen flex flex-col items-center justify-center text-center px-6 relative">
-            <div class="fade-in">
-                <div class="text-rose-500 text-6xl mb-4"><i class="fa-solid fa-infinity"></i></div>
-                <h1 class="text-5xl md:text-8xl font-romantic text-rose-600 mb-4 text-shadow-sm">Aditi x Ayush</h1>
-                <p class="text-2xl md:text-3xl text-rose-800 font-semibold mb-8">Building our lifetime of memories, one laugh at a time.</p>
-                <div class="animate-bounce text-rose-400 text-3xl">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </div>
-            </div>
-        </header>
+<!-- PAGE 2 -->
+<section id="page2">
+    <h1>CONGRATULATIONS 🎉</h1>
+    <img src="images/us1.jpg">
+    <p>
+        You just chose a lifetime of love, madness,
+        comfort, silly fights, tighter hugs
+        and <strong>ME</strong>.
+        <br><br>
+        Best decision ever, Ayush 😌
+    </p>
+    <button onclick="goTo('page3')">Show my benefits 😏</button>
+</section>
 
-        <!-- Benefits Section -->
-        <section class="max-w-6xl mx-auto px-6 py-20 text-center">
-            <h2 class="text-4xl md:text-5xl font-romantic text-rose-600 mb-6">Your Lifetime Benefits</h2>
-            <p class="text-xl text-gray-600 mb-16">Since you're the best part of my life, here's what you get for being mine.</p>
+<!-- PAGE 3 -->
+<section id="page3">
+    <h1>Lifetime Benefit #1 💖</h1>
+    <img src="images/us2.jpg">
+    <p>
+        <strong>Unlimited Love & Loyalty</strong><br>
+        I’ll choose you on good days,
+        bad days, sleepy days and hangry days.
+    </p>
+    <button onclick="goTo('page4')">Next ➡️</button>
+</section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                
-                <!-- Benefit 1: The Main Photo You Sent -->
-                <div class="benefit-card bg-white p-6 rounded-3xl shadow-xl border-b-8 border-rose-400">
-                    <div class="img-container">
-                        <img src="https://api.clark-prod.com/artifacts/00000000-0000-0000-0000-000000000000/1f8099a9-2b07-499c-8323-cedef2d13194.jpg" alt="Our Hugs">
-                    </div>
-                    <h3 class="text-2xl font-bold text-rose-700 mb-3">Premium Hug Station</h3>
-                    <p class="text-gray-600">Free emotional therapy and high-quality hugs available 24/7. Guaranteed to solve 99% of your stress instantly.</p>
-                </div>
+<!-- PAGE 4 -->
+<section id="page4">
+    <h1>Lifetime Benefit #2 😂</h1>
+    <img src="images/us3.jpg">
+    <p>
+        <strong>Endless Fun</strong><br>
+        Life with me includes laughter,
+        random photos, dumb jokes and chaos.
+    </p>
+    <button onclick="goTo('page5')">Next ➡️</button>
+</section>
 
-                <!-- Benefit 2 -->
-                <div class="benefit-card bg-white p-6 rounded-3xl shadow-xl border-b-8 border-rose-400">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=500" alt="Cooking">
-                    </div>
-                    <h3 class="text-2xl font-bold text-rose-700 mb-3">Personal Masterchef</h3>
-                    <p class="text-gray-600">Unlimited access to experimental snacks and meals made with 100% extra love just for you.</p>
-                </div>
+<!-- PAGE 5 -->
+<section id="page5">
+    <h1>Lifetime Benefit #3 🫶</h1>
+    <img src="images/us4.jpg">
+    <p>
+        <strong>Your Safe Space</strong><br>
+        No matter what life throws at you,
+        you’ll always have me.
+    </p>
+    <button onclick="goTo('page6')">Next ➡️</button>
+</section>
 
-                <!-- Benefit 3 -->
-                <div class="benefit-card bg-white p-6 rounded-3xl shadow-xl border-b-8 border-rose-400">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=500" alt="Deciding">
-                    </div>
-                    <h3 class="text-2xl font-bold text-rose-700 mb-3">The "Anything" Expert</h3>
-                    <p class="text-gray-600">I will eventually decide what we're eating after saying "anything is fine" for exactly 45 minutes.</p>
-                </div>
+<!-- PAGE 6 -->
+<section id="page6">
+    <h1>Lifetime Benefit #4 👑</h1>
+    <img src="images/ayus.jpg">
+    <p>
+        <strong>About YOU</strong><br>
+        Ayush, you are kind, strong and special.
+        I admire your heart and love the person you are.
+    </p>
+    <button onclick="goTo('page7')">Final Surprise 💕</button>
+</section>
 
-                <!-- Benefit 4 -->
-                <div class="benefit-card bg-white p-6 rounded-3xl shadow-xl border-b-8 border-rose-400">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=500" alt="Cheer">
-                    </div>
-                    <h3 class="text-2xl font-bold text-rose-700 mb-3">Chief Cheerleader</h3>
-                    <p class="text-gray-600">President of the Ayush Fan Club. Every small win of yours is treated like a World Cup victory!</p>
-                </div>
+<!-- PAGE 7 – PROPOSAL -->
+<section id="page7">
+    <h1>Ayush… 💖</h1>
+    <div class="heart">💍</div>
 
-                <!-- Benefit 5 -->
-                <div class="benefit-card bg-white p-6 rounded-3xl shadow-xl border-b-8 border-rose-400">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500" alt="Laugh">
-                    </div>
-                    <h3 class="text-2xl font-bold text-rose-700 mb-3">Chaos & Laughter</h3>
-                    <p class="text-gray-600">Guaranteed dose of silly jokes, weird dances, and fun drama to keep our lives spicy and happy.</p>
-                </div>
+    <p>
+        From silly laughs to quiet moments,<br>
+        from chaos to comfort —<br>
+        you are my favorite place.
+        <br><br>
+        Life feels better with you in it.
+        <br><br>
+        So today, I ask you something real…
+    </p>
 
-            </div>
-        </section>
+    <h1>Will you be mine, forever? 💍</h1>
+    <button onclick="finalYes()">YES, always ❤️</button>
+</section>
 
-        <!-- Appreciation Section -->
-        <section class="bg-rose-600 py-20 px-6 text-white text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-6xl font-romantic mb-10">Why I Love You, Ayush</h2>
-                <p class="text-xl md:text-2xl leading-relaxed italic mb-10">
-                    "Beyond all the benefits and the fun, I want you to know that you are the most amazing man I've ever known. Your patience, your kindness, and the way you look at me make me feel like the luckiest girl in the world. Thank you for being my Ayush."
-                </p>
-                <div class="flex justify-center gap-6 text-4xl">
-                    <i class="fa-solid fa-heart animate-pulse"></i>
-                    <i class="fa-solid fa-infinity"></i>
-                    <i class="fa-solid fa-heart animate-pulse"></i>
-                </div>
-            </div>
-        </section>
+<script>
+function goTo(pageId) {
+    document.querySelectorAll('section').forEach(sec =>
+        sec.classList.remove('active')
+    );
+    document.getElementById(pageId).classList.add('active');
+}
 
-        <!-- The Agreement -->
-        <section class="max-w-3xl mx-auto px-6 py-20 text-center">
-            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border-2 border-rose-100">
-                <h2 class="text-3xl font-bold text-rose-700 mb-6 uppercase tracking-widest">Our Lifetime Pact</h2>
-                <div class="text-left space-y-4 text-gray-700 mb-10">
-                    <p>1. Ayush agrees to provide forehead kisses daily.</p>
-                    <p>2. Aditi agrees to laugh at 80% of Ayush's jokes (even the bad ones).</p>
-                    <p>3. Both parties agree that "What should we eat?" is a valid 2-hour conversation.</p>
-                    <p>4. This contract is valid for 100+ years and cannot be canceled.</p>
-                </div>
-                <div class="flex flex-col items-center gap-4">
-                    <div class="w-full border-b-2 border-gray-300 pt-10"></div>
-                    <p class="font-romantic text-3xl text-rose-600">Aditi & Ayush Forever</p>
-                </div>
-            </div>
-        </section>
+function yesClicked() {
+    goTo('page2');
+    document.getElementById('music').play();
+    confetti();
+}
 
-        <footer class="text-center py-10 text-rose-400 font-bold">
-            <p>Made with ❤️ for Ayush</p>
-        </footer>
+function confetti() {
+    for (let i = 0; i < 70; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = ['#fff','#ff4d6d','#ffd6e0'][Math.floor(Math.random()*3)];
+        c.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3000);
+    }
+}
 
-    </main>
+// Running NO button
+const noBtn = document.getElementById('noBtn');
+noBtn.addEventListener('mouseover', () => {
+    noBtn.style.left = Math.random() * 200 - 100 + 'px';
+    noBtn.style.top = Math.random() * 200 - 100 + 'px';
+});
 
-    <script>
-        window.unlockWebsite = () => {
-            const unlock = document.getElementById('unlock-screen');
-            const main = document.getElementById('main-content');
-            unlock.style.opacity = '0';
-            unlock.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                unlock.classList.add('hidden');
-                main.classList.remove('hidden-section');
-                main.classList.add('fade-in');
-                createHearts();
-            }, 500);
-        };
+function finalYes() {
+    alert(
+        "You just chose me.\n" +
+        "Every day.\n" +
+        "Every version.\n\n" +
+        "I love you endlessly.\n— Aditi ❤️"
+    );
+}
+</script>
 
-        window.moveNo = (btn) => {
-            btn.style.position = 'fixed';
-            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-        };
-
-        function createHearts() {
-            const container = document.getElementById('heart-container');
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
-                heart.className = 'absolute text-rose-200 pointer-events-none';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '110vh';
-                heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-                heart.style.transition = `all ${Math.random() * 3 + 3}s linear`;
-                container.appendChild(heart);
-                setTimeout(() => {
-                    heart.style.top = '-10vh';
-                    heart.style.opacity = '0';
-                }, 100);
-                setTimeout(() => heart.remove(), 6000);
-            }, 400);
-        }
-    </script>
 </body>
 </html>
